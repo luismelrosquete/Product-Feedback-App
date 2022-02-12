@@ -1,5 +1,6 @@
-import PropTypes from "prop-types";
+import {useContext} from "react";
 import FeedbackItem from "./FeedbackItem";
+import FeedbackContext from "../context/FeedbackContext";
 
 {/*
 
@@ -9,7 +10,9 @@ If there is feedback, display the feedback by looping through all of the feedbac
 
 */}
 
-function FeedbackList({feedback, handleDelete}) {
+function FeedbackList() {
+
+  const {feedback} = useContext(FeedbackContext); // we're going to use this global state instead to get the feedback
 
   if (!feedback || feedback.length === 0) {
     return <p>No Feedback Yet</p>
@@ -23,7 +26,6 @@ function FeedbackList({feedback, handleDelete}) {
           <FeedbackItem 
             key={item.id} 
             item={item} 
-            handleDelete={handleDelete}
           />
         ))
       }
@@ -32,8 +34,5 @@ function FeedbackList({feedback, handleDelete}) {
   )
 }
 
-FeedbackList.propTypes = {
-  feedback: PropTypes.array,
-}
 
 export default FeedbackList;
