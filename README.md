@@ -1,6 +1,6 @@
 # Product Feedback App
 
-##LIVE DEMO CAN BE FOUND [HERE](https://infallible-nightingale-0aeab5.netlify.app/).
+LIVE DEMO CAN BE FOUND [HERE](https://infallible-nightingale-0aeab5.netlify.app/).
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
