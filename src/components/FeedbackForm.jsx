@@ -62,9 +62,8 @@ function FeedbackForm() {
             } else {
                 addFeedback(newFeedback);
             }
-
             setBtnDisabled(true);
-            setRating();
+            setRating(10);
             setText("");
         }
     }
