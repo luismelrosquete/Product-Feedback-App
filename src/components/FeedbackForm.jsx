@@ -14,14 +14,16 @@ function FeedbackForm() {
     const {addFeedback, feedbackEdit, updateFeedback} = useContext(FeedbackContext);
     // we will use feedbackEdit which has the edit boolean value and the item id to be edited.
 
+    // the code will be executed when the edit button is clicked in any item
     useEffect(() => {
         if (feedbackEdit.edit) {
             setBtnDisabled(false)
             setText(feedbackEdit.item.text)
             setRating(feedbackEdit.item.rating);
         }
-    }, [feedbackEdit])
+    }, [feedbackEdit]) // if we leave this blank, useEffect will load as soon as the page loads which could be helpful when pulling data using an API
 
+    // we are using (e) or event so that we can tap into the text being typed in live
 
     const handleTextChange = (e) => {
 
@@ -52,15 +54,17 @@ function FeedbackForm() {
         if(text.trim().length > 10) {
             const newFeedback = {
                 text,
-                rating
+                rating,
             }
 
-            if (feedbackEdit) {
+            if (feedbackEdit.edit === true) {
                 updateFeedback(feedbackEdit.item.id, newFeedback);
             } else {
                 addFeedback(newFeedback);
             }
-            
+
+            setBtnDisabled(true);
+            setRating();
             setText("");
         }
     }

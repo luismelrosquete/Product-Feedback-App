@@ -58,6 +58,11 @@ export const FeedbackProvider = ({children}) => {
 
     const updateFeedback = (id, updateItem) => {
         setFeedback(feedback.map((item) => item.id === id ? { ...item, ...updateItem} : item))
+
+        setFeedbackEdit({
+            item: {},
+            edit: false,
+        });
     }
 
     // The feedback will be passed over as a value for the components that need it.
