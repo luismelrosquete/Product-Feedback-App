@@ -1,5 +1,6 @@
 import {useContext} from "react";
 import FeedbackItem from "./FeedbackItem";
+import Spinner from "./shared/Spinner";
 import FeedbackContext from "../context/FeedbackContext";
 
 {/*
@@ -12,26 +13,22 @@ If there is feedback, display the feedback by looping through all of the feedbac
 
 function FeedbackList() {
 
-  const {feedback} = useContext(FeedbackContext); // we're going to use this global state instead to get the feedback
+  const {feedback, isLoading} = useContext(FeedbackContext); // we're going to use this global state instead to get the feedback
 
-  if (!feedback || feedback.length === 0) {
+  if (!isLoading && (!feedback || feedback.length === 0)) {
     return <p>No Feedback Yet</p>
   }
 
-  return (
-    <div className="feedback-list">
-
-      {
-        feedback.map((item) => (
-          <FeedbackItem 
-            key={item.id} 
-            item={item} 
-          />
-        ))
-      }
-
-    </div>
-  )
+  return isLoading ? <Spinner /> : (<div className="feedback-list">
+    {
+      feedback.map((item) => (
+        <FeedbackItem 
+          key={item.id} 
+          item={item} 
+        />
+      ))
+    }
+  </div>)
 }
 
 
